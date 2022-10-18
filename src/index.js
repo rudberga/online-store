@@ -1,12 +1,26 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import {createRoot} from "react-dom/client";
 import './index.css';
 import App from './App';
 import {useState} from "react";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+function App() {
+  const [loggedIn, setLoggedIn] = useState(false);
+  if (loggedIn === true) {
+      return (
+          <>
+              <StoreFront />
+              <button className="btn btn-outline" onClick={() => setLoggedIn(false)}>Logout</button>
+          </>
+      )
+  } else { 
+      return (
+          <>
+              <h2>Please login</h2>
+              <button className="btn btn-primary" onClick={() => setLoggedIn(true)}>Login</button>
+          </>
+      )
+    };
+};
+
+createRoot(document.querySelector("#react-root")).render(<App />);
