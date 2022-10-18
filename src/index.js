@@ -1,8 +1,8 @@
 import React from 'react';
 import {createRoot} from "react-dom/client";
 import './index.css';
-import App from './App';
 import {useState} from "react";
+import StoreFront from "./StoreFront.js";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
