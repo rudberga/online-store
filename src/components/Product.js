@@ -1,17 +1,30 @@
 import {useState} from "react";
 
-export default function Product() {
+export default function Product(props) {
+    const [counter, setCounter] = useState(0);
+    const {details} = props;
+
+    const decrement = () => {
+        if (counter === 0) {
+            return;
+        };
+        setCounter(counter - 1)
+    };
+
+    const increment = () => {
+        setCounter(counter + 1)
+    };
 
     return <div className="product">
-        <img width="50" alt="" />
+        <img src={details.image} width="50" alt="" />
         <div className="product-info">
-            <h2>Name</h2>
-            <p>Description</p>
+            <h2>{details.name}</h2>
+            <p>{details.description}</p>
         </div>
         <div className="product-buttons">
-            <button className="product-sub">-</button>
-            <h3 className="product-count">0</h3>
-            <button className="product-add">+</button>
+            <button onClick={decrement} disabled={!counter} className="product-sub">-</button>
+            <h3 className="product-count">{counter}</h3>
+            <button onClick={increment} className="product-add">+</button>
         </div>
     </div>
-};
+}
